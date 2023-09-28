@@ -4,8 +4,9 @@ export class Menu {
   pizze: Pizza[];
 
 
-  constructor(name, creationDate){
+  constructor(name, creationDate, pizze){
     this.name=name;
     this.creationDate = creationDate;
+    this.pizze = pizze;
   }
 }
