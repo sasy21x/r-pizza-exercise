@@ -1,0 +1,126 @@
+{
+  "ordini": [
+    {
+      "id": 1,
+      "riferimento": "Ordine001",
+      "data_ordine": "2000-01-01T10:00:00Z",
+      "pizze": [
+        {
+          "pizzaId": 1,
+          "quantita": 2
+        },
+        {
+          "pizzaId": 2,
+          "quantita": 3
+        }
+      ],
+      "importo_totale": 25.5
+    },
+    {
+      "id": 2,
+      "riferimento": "Ordine002",
+      "data_ordine": "2000-01-02T14:30:00Z",
+      "pizze": [
+        {
+          "pizzaId": 3,
+          "quantita": 1
+        }
+      ],
+      "importo_totale": 12.0
+    }
+  ],
+  "prenotazioni": [
+    {
+      "id": 1,
+      "riferimento": "Prenotazione001",
+      "data_prenotazione": "2000-02-01T18:00:00Z",
+      "persone": 4
+    },
+    {
+      "id": 2,
+      "riferimento": "Prenotazione002",
+      "data_prenotazione": "2000-02-02T19:30:00Z",
+      "persone": 6
+    }
+  ],
+  "pizza": [
+    {
+      "id": 1,
+      "nome": "Margherita",
+      "impastiId": 1,
+      "ingredientiId": 1
+    },
+    {
+      "id": 2,
+      "nome": "Pepperoni",
+      "impastiId": 2,
+      "ingredientiId": 2
+    },
+    {
+      "id": 3,
+      "nome": "Quattro Formaggi",
+      "impastiId": 3,
+      "ingredientiId": 3
+    }
+  ],
+  "ingredienti": [
+    {
+      "id": 1,
+      "nome": "Pomodoro"
+    },
+    {
+      "id": 2,
+      "nome": "Peperoni"
+    },
+    {
+      "id": 3,
+      "nome": "Formaggio"
+    }
+  ],
+  "impasti": [
+    {
+      "id": 1,
+      "nome": "Sottile"
+    },
+    {
+      "id": 2,
+      "nome": "Spesso"
+    },
+    {
+      "id": 3,
+      "nome": "Integrale"
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "nome": "Menu1",
+      "data_creazione": "2000-01-10T09:00:00Z",
+      "pizze": [
+        {
+          "pizzaid": 1,
+          "prezzo": 9.99
+        },
+        {
+          "pizzaid": 2,
+          "prezzo": 11.99
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Menu2",
+      "data_creazione": "2000-01-15T12:00:00Z",
+      "pizze": [
+        {
+          "pizzaid": 2,
+          "prezzo": 10.99
+        },
+        {
+          "pizzaid": 3,
+          "prezzo": 12.99
+        }
+      ]
+    }
+  ]
+}
