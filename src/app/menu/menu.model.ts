@@ -1,12 +1,15 @@
+import { Pizza } from "../pizza/pizza.model";
+
 export class Menu {
-  name: string;
-  creationDate: Date;
-  pizze: Pizza[];
+  id: number;
+  nome: string;
+  data_creazione: Date;
+  pizze: {pizzaid: number, prezzo:number, pizza?: Pizza}[];
 
 
   constructor(name, creationDate, pizze){
-    this.name=name;
-    this.creationDate = creationDate;
+    this.nome=name;
+    this.data_creazione = creationDate;
     this.pizze = pizze;
   }
 }

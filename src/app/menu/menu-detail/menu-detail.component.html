@@ -1,5 +1,34 @@
-
-<h3>{{menu.name}}</h3>
-<p>{{menu.creationDate}}</p>
-
-<button class="btn btn-primary">edit Menu</button>
+<div *ngIf="menu" class="row">
+  <div class="col-md-6">
+    <div class="d-flex flex-column align-items-start">
+      <p-inplace closable="closable" class="custom-inplace">
+        <ng-template pTemplate="display">
+          <span class="h3-style">{{ menu.nome }}</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <input type="text" value={{menu.nome}} pInputText />
+        </ng-template>
+    </p-inplace>
+    <p>{{ menu.data_creazione | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <div class="pizza-list">
+      <ng-container *ngFor="let pizza of menuPizzas; let i = index">
+        <div>
+          <li>{{ pizza.nome }}: {{ menu.pizze[i].prezzo }}€</li>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group-vertical" role="group">
+      <button class="btn btn-outline-dark btn-block" (click)="onModify()">
+        <i class="pi pi-cog"></i>
+        Modifica Pizze
+      </button>
+      <button class="btn btn-outline-danger btn-block" (click)="onDelete()">
+        <i class="pi pi-trash"></i>
+        Elimina Menu
+      </button>
+    </div>
+  </div>
+</div>

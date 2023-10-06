@@ -1,0 +1,14 @@
+@import "primeicons/primeicons.css";
+
+
+.h3-style {
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  /* Altre proprietà di stile dell'h3 */
+}
+
+
+ .p-element .h3-style{
+  margin-left: -0.4em;
+}

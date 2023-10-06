@@ -1,0 +1,12 @@
+<!-- <link rel="stylesheet" type="text/css" href="node_modules/primeng/resources/themes/saga-blue/theme.css" />
+<link rel="stylesheet" type="text/css" href="node_modules/primeng/resources/primeng.min.css" /> -->
+
+
+<form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+        <p-multiSelect appendTo="body" [options]="pizzaOptions" formControlName="pizze" optionLabel="nome"></p-multiSelect>
+
+      <br>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+

@@ -1,21 +1,32 @@
+<br>
 <div class="row">
   <div class="col-xs-12">
-    <button class="btn btn-success" (click)="onNewMenu()">Nuovo Menù</button>
-    <hr>
+  <button class="btn btn-success" (click)="onNewMenu()">
+    <i class="fa fa-plus"></i>
+    Nuovo Menù</button>
   </div>
 </div>
-
+<br>
 <div class="row">
   <div class="col-md-5">
     <div class="row">
-      <div class="col-xs-12">
-        <app-menu-item *ngFor="let menu of menus;let i = index" [inputMenu]="menu" [index]="i" ></app-menu-item>
+      <p  *ngIf="menus.length < 1 && !isFetching ">No menu available!
+        <button type="button" class="btn btn-outline-danger" (click)="onRefreshMenus()">Refresh</button>
+      </p>
+      <div class="col-xs-12 menu-list" *ngIf="!isFetching && menus.length >= 1">
+        <app-menu-item *ngFor="let menu of menus;" [inputMenu]="menu" [index]="menu.id"></app-menu-item>
+      </div>
+      <p *ngIf="isFetching && !error && menus.length>=1"> Loading...</p>
+      <div class="alert alert-danger"*ngIf="error">
+        <h1>An Error Occurred!
+        </h1>
+        <p> {{error.message}}</p>
+        <button class="btn btn-danger" (click)="onHandleError()">Okay</button>
       </div>
     </div>
   </div>
 
   <div class="col-md-7">
-    <!-- Muovi il router-outlet qui dentro -->
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,30 +1,36 @@
 <!-- Menu, Gestione Pizze, Magazzino, Gestione utenze, Prenotazioni, Ordini -->
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+
 <nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="container">
-    <a class="navbar-brand" href="#">Pizzeria</a>
+  <div class="container" >
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-pizza-slice rotate-270 color" ></i>
+      <span class="r-pizza color"> R-Pizza</span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/menu']">Menu</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/menu']">Menu</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/ordini']">Ordini</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/ordini']">Ordini</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/prenotazioni']">Prenotazioni</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/prenotazioni']">Prenotazioni</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/magazzino']">Magazzino</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/magazzino']">Magazzino</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/gestione-pizze']">Gestione Pizze</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gestione-pizze']">Gestione Pizze</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/gestione-utenze']">Gestione Utenze</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gestione-utenze']">Gestione Utenze</a>
         </li>
       </ul>
     </div>

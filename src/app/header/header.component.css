@@ -1,8 +1,28 @@
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
 .navbar-custom {
-  background-color: rgb(105, 0, 0); /* Imposta il colore di sfondo rosso */
+  background-color: rgb(105, 0, 0);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link {
-  color: white !important; /* Imposta il colore del testo su bianco */
+  color: white !important;
 }
+
+@font-face {
+  font-family: 'mainFont';
+  src: url('../../../fonts/mainFont.otf') format('opentype');
+
+}
+
+.r-pizza {
+  font-family: 'mainFont';
+}
+
+
+
+

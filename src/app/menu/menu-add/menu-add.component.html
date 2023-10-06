@@ -1,0 +1,14 @@
+<form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+<div class="form-group">
+    <label for="username">Nome Menu:</label>
+    <input
+      type="text"
+      id="nome"
+      formControlName="nome"
+      class="form-control">
+      <span class="help-block"
+      *ngIf="!menuForm.get('nome').valid && menuForm.get('nome').touched">Enter a valid Username</span>
+  </div>
+  <br>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

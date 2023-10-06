@@ -1,30 +1,92 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http"
 import { Menu } from "./menu.model";
+import { Observable, Subject, catchError, map, throwError } from "rxjs";
 
 
 @Injectable()
 export class MenuService{
-  private menus: Menu[] = [
-    new Menu("Menu1",
-     '19/01/2010'),
-     new Menu("Menu2",
-     '19/01/2015'),
-     new Menu("Menu3",
-     '19/01/2019'),
-  ];
+  baseUrl: string = "http://localhost:3000/menu";
+  error = new Subject<string>
+  menuChanged = new Subject<Menu[]>
 
-//Modifica
-  getMenus(){
-    return this.menus;
+constructor(private http: HttpClient){}
+
+
+
+// Chiamata Post per aggiungere un Menu
+addMenu(menu: Menu){
+  const menuData: Menu = menu;
+
+  this.http
+    .post<{name: string}>(
+      this.baseUrl,
+      menuData
+    )
+    .subscribe(responseData => {
+      console.log(responseData);
+      this.getMenus().subscribe((updatedMenus) => {
+        this.menuChanged.next(updatedMenus);
+      });
+    }, error => { this.error.next(error.message); }
+    );
+    //Aggiorna
+}
+// Chiamata Patch per modificare un Menu
+changeMenu(menuId: number, menu: Menu){
+  const url = `${this.baseUrl}/${menuId}`;
+  this.http.patch(url, menu, { headers: { 'Content-Type': 'application/json' } }).subscribe(responseData => {console.log(responseData);
+    this.getMenus().subscribe((updatedMenus) => {
+      console.log(updatedMenus);
+      this.menuChanged.next(updatedMenus);
+
+    });
+  }, error => {error.next(error.message)});
+  //Aggiorna
+}
+
+
+
+  //get dei menu
+   getMenus(){
+
+    return this.http.get<{[key: string]: Menu}>(this.baseUrl).pipe(
+      map((responseData ) => {
+      const postsArray: Menu[] = [];
+      for(const key in responseData){
+        if(responseData.hasOwnProperty(key)){
+             postsArray.push({...responseData[key]});
+        }
+
+      }
+      return postsArray;
+    }), catchError(errorRes => {
+            return throwError(errorRes);
+    }))
+
   }
 
-  getMenu(id: number){
-    return this.menus[id];
+
+  getMenuById(menuId: number): Observable<Menu> {
+    const url = `${this.baseUrl}/${menuId}`;
+
+    return this.http.get<Menu>(url).pipe(
+      catchError((errorRes) => {
+        return throwError(errorRes);
+      })
+    );
   }
 
-  menuExists(id: number): boolean {
-    return id >= 0 && id < this.menus.length; // Verifica se l'ID è un indice valido nell'array
+  deleteMenuById(id: number){
+    const url = `${this.baseUrl}/${id}`;
+    this.http.delete(url).subscribe(responseData => {console.log(responseData);
+      this.getMenus().subscribe((updatedMenus) => {
+        this.menuChanged.next(updatedMenus);
+      });
+    }, error => {error.next(error.message)});
   }
+
+
 
 
 }

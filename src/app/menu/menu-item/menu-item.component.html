@@ -1,12 +1,27 @@
-<a
-  style="cursor: pointer;"
-  routerLinkActive="active"
-  [routerLink]="[index]"
-  class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-handing">{{ menu.name }}</h4>
-  </div>
-  <span class="pull-right">
-    {{ menu.creationDate }}
-  </span>
-</a>
+<div class="list-group">
+  <a
+    style="cursor: pointer;"
+    routerLinkActive="router-link-active"
+    [routerLink]="[index]"
+    class="list-group-item clearfix">
+    <div class="row">
+      <div class="col-md-8">
+        <h4>{{ menu.nome }}</h4>
+      </div>
+    </div>
+    <p>{{ menu.data_creazione | date:'dd/MM/yyyy' }}</p>
+    <div class="list-group-item">
+      <ng-container *ngIf="pizzas.length <= 2; else pizzaList">
+        <p *ngFor="let pizza of pizzas; let i = index">
+          <b>{{ pizza.nome }}</b>: {{ menu.pizze[i].prezzo }}
+        </p>
+      </ng-container>
+      <ng-template #pizzaList>
+        <p>
+          <!-- Se ci sono più di due pizze, mostra una lista separata -->
+          <b>{{ pizzas[0].nome }}, {{ pizzas[1].nome }} ...</b>
+        </p>
+      </ng-template>
+    </div>
+  </a>
+</div>

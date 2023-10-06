@@ -1,0 +1,25 @@
+
+/* .ui-dialog {
+  background-color: #f0f0f0;
+}
+.ui-dialog .ui-dialog-content {
+  background-color: #f0f0f0 !important;
+}
+ */
+ .ui-dialog {
+  z-index: 1000 !important;
+}
+
+.ui-datepicker {
+  z-index: 2001 !important;
+}
+
+
+.error-border {
+  border: 1px solid red;
+}
+
+.small-input {
+  width: 50px; /* Imposta la larghezza desiderata */
+  /* Altri stili personalizzati se necessario */
+}
