@@ -13,7 +13,7 @@
     </div>
     <div class="pizza-list">
       <ng-container *ngFor="let pizza of menuPizzas; let i = index">
-        <div>
+        <div *ngIf="menu.pizze && menu.pizze[i]">
           <li>{{ pizza.nome }}: {{ menu.pizze[i].prezzo }}€</li>
         </div>
       </ng-container>

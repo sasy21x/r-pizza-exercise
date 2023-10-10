@@ -3,6 +3,7 @@ import { MenuService } from '../menu.service';
 import { Menu } from '../menu.model';
 import { Pizza } from 'src/app/pizza/pizza.model';
 import { PizzaService } from 'src/app/pizza/pizza.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu-item',
@@ -13,6 +14,7 @@ export class MenuItemComponent implements OnInit{
 
   @Input("inputMenu") menu: Menu;
   @Input() index :number;
+  pizzaSub: Subscription;
   pizzas: Pizza[];
 
 
@@ -20,7 +22,13 @@ export class MenuItemComponent implements OnInit{
 
   ngOnInit(){
     console.log(this.menu);
-    this.pizzas = this.pizzaService.getPizzasFromMenu(this.menu)
+    this.pizzaSub = this.pizzaService.getPizzasFromMenu(this.menu).subscribe((pizzas)=>{
+      this.pizzas = pizzas;
+    })
+}
+
+ngOnDestroy(){
+  this.pizzaSub.unsubscribe();
 }
 
 

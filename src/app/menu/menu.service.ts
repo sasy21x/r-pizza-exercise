@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"
 import { Menu } from "./menu.model";
-import { Observable, Subject, catchError, map, throwError } from "rxjs";
+import { Observable, Subject, catchError, map, mergeMap, throwError } from "rxjs";
 
 
 @Injectable()
@@ -35,14 +35,15 @@ addMenu(menu: Menu){
 // Chiamata Patch per modificare un Menu
 changeMenu(menuId: number, menu: Menu){
   const url = `${this.baseUrl}/${menuId}`;
-  this.http.patch(url, menu, { headers: { 'Content-Type': 'application/json' } }).subscribe(responseData => {console.log(responseData);
-    this.getMenus().subscribe((updatedMenus) => {
-      console.log(updatedMenus);
-      this.menuChanged.next(updatedMenus);
-
-    });
-  }, error => {error.next(error.message)});
-  //Aggiorna
+  this.http.patch(url, menu, { headers: { 'Content-Type': 'application/json' } }).pipe(
+    mergeMap(() => this.getMenus()),
+    catchError(error => {
+      this.error.next(error.message);
+      return throwError(error);
+    })
+  ).subscribe(updatedMenus => {
+    this.menuChanged.next(updatedMenus);
+  });
 }
 
 
@@ -77,13 +78,22 @@ changeMenu(menuId: number, menu: Menu){
     );
   }
 
-  deleteMenuById(id: number){
+
+
+  deleteMenuById(id: number) {
     const url = `${this.baseUrl}/${id}`;
-    this.http.delete(url).subscribe(responseData => {console.log(responseData);
-      this.getMenus().subscribe((updatedMenus) => {
-        this.menuChanged.next(updatedMenus);
-      });
-    }, error => {error.next(error.message)});
+
+    this.http.delete(url).pipe(
+      mergeMap(() => this.getMenus()),
+      catchError(error => {
+        this.error.next(error.message);
+        return throwError(error);
+      })
+    ).subscribe(updatedMenus => {
+      this.menuChanged.next(updatedMenus);
+    }, error => {
+      this.error.next(error.message); // Gestisci l'errore dell'operazione DELETE
+    });
   }
 
 

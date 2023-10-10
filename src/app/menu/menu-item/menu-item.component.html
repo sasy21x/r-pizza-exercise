@@ -10,7 +10,7 @@
       </div>
     </div>
     <p>{{ menu.data_creazione | date:'dd/MM/yyyy' }}</p>
-    <div class="list-group-item">
+    <div class="list-group-item" *ngIf="pizzas">
       <ng-container *ngIf="pizzas.length <= 2; else pizzaList">
         <p *ngFor="let pizza of pizzas; let i = index">
           <b>{{ pizza.nome }}</b>: {{ menu.pizze[i].prezzo }}
@@ -18,7 +18,6 @@
       </ng-container>
       <ng-template #pizzaList>
         <p>
-          <!-- Se ci sono più di due pizze, mostra una lista separata -->
           <b>{{ pizzas[0].nome }}, {{ pizzas[1].nome }} ...</b>
         </p>
       </ng-template>
